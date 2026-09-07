@@ -1,0 +1,141 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+body {
+    background: #1a1a2e;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.page-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ===== КАРТОЧКА ПЕРСОНАЖА ===== */
+.character-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.character-frame {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 280px;
+    transition: all 0.5s ease;
+    border: 3px solid #555;
+}
+
+.character-frame.legendary {
+    border-color: #FFD700;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+}
+
+.character-frame.obichni {
+    border-color: #95A5A6;
+    box-shadow: 0 0 20px rgba(149, 165, 166, 0.2);
+}
+
+.character-frame.epic {
+    border-color: #FF6B6B;
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.3);
+}
+
+.character-frame.rare {
+    border-color: #4ECDC4;
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
+}
+
+.char-name {
+    color: white;
+    font-size: 28px;
+    margin: 10px 0;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.char-rarity {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.rarity-legendary { color: #FFD700; }
+.rarity-obichni { color: #95A5A6; }
+.rarity-epic { color: #FF6B6B; }
+.rarity-rare { color: #4ECDC4; }
+
+.char-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.2);
+    margin: 10px auto;
+    display: block;
+}
+
+.char-desc {
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* ===== КНОПКА ВНИЗУ ===== */
+.bottom-btn {
+    text-align: center;
+    padding: 20px;
+    background: (0, 0, 0, 5);
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.image-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+}
+
+.image-btn img {
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.image-btn img:hover {
+    transform: scale(1.05);
+}
+
+.image-btn img:active {
+    transform: scale(0.95);
+}
+
+/* ===== АНИМАЦИЯ ===== */
+@keyframes character-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1) rotate(3deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.character-appear {
+    animation: character-appear 0.7s ease forwards;
+}

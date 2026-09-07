@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>как дела? Привет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="character-container">
+            <div class="character-frame" id="characterFrame">
+                <h3 class="char-name" id="charName">Выбей Захаров в карточке</h3>
+                <p class="char-rarity" id="charRarity">🌟???</p>
+                <img id="randomImg" src="images/pipez.jpg" alt="Персонаж" class="char-img">
+                <p class="char-desc" id="charDesc">выбей кого-нибудь</p>
+            </div>
+        </div>
+        
+        <div class="bottom-btn">
+            <button onclick="randomImage()" class="image-btn">
+                <img src="images/legend.jpg" alt="🍾открыть чекунец с захаром🍾">
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ===== ВЕСЬ СКРИПТ ИЗ ПЕРВОГО БЛОКА =====
+        const characters = [
+            { 
+                name: 'Легендарный Захар🌟', 
+                img: 'images/legendarni.jpg', 
+                rarity: 'Легендарный', 
+                rarityClass: 'legendary',
+                rarityColor: 'rarity-legendary',
+                desc: 'Легендарен только в мечтах анки',
+                sound: 'sounds/legendary.mp3'
+            },
+            { 
+                name: 'обычный Захар💩', 
+                img: 'images/pipez.jpg', 
+                rarity: 'обычный', 
+                rarityClass: 'obichni',
+                rarityColor: 'rarity-obichni',
+                desc: 'обычный Захар. Сказать нечего',
+                sound: 'sounds/obichni.mp3'
+            },
+            { 
+                name: 'эпический Захар😈', 
+                img: 'images/sahar.jpg', 
+                rarity: 'Эпический', 
+                rarityClass: 'epic',
+                rarityColor: 'rarity-epic',
+                desc: 'Недостаточно белый, но и недостаточно чёрный.',
+                sound: 'sounds/epic.mp3'
+            },
+            { 
+                name: 'Редкий Захар🤢', 
+                img: 'images/redki.jpg', 
+                rarity: 'Редкий', 
+                rarityClass: 'rare',
+                rarityColor: 'rarity-rare',
+                desc: 'Редко делает домашку',
+                sound: 'sounds/rare.mp3'
+            }
+        ];
+
+        function playSound(soundPath) {
+            try {
+                const audio = new Audio(soundPath);
+                audio.volume = 0.7;
+                audio.play().catch(e => {
+                    console.log('Звук не загрузился:', soundPath);
+                });
+            } catch(e) {
+                console.log('Ошибка воспроизведения звука:', e);
+            }
+        }
+
+        function randomImage() {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            const char = characters[randomIndex];
+            
+            const img = document.getElementById('randomImg');
+            img.src = char.img;
+            img.classList.remove('character-appear');
+            setTimeout(() => {
+                img.classList.add('character-appear');
+            }, 10);
+            
+            document.getElementById('charName').textContent = char.name;
+            
+            const rarityEl = document.getElementById('charRarity');
+            rarityEl.textContent = '⭐ ' + char.rarity;
+            rarityEl.className = 'char-rarity ' + char.rarityColor;
+            
+            document.getElementById('charDesc').textContent = char.desc;
+            
+            const frame = document.getElementById('characterFrame');
+            frame.className = 'character-frame ' + char.rarityClass;
+            
+            if (char.sound) {
+                playSound(char.sound);
+            }
+        }
+
+        window.onload = function() {
+            const char = characters[1];
+            document.getElementById('randomImg').src = char.img;
+            document.getElementById('charName').textContent = char.name;
+            document.getElementById('charRarity').textContent = '⭐ ' + char.rarity;
+            document.getElementById('charRarity').className = 'char-rarity ' + char.rarityColor;
+            document.getElementById('charDesc').textContent = char.desc;
+            document.getElementById('characterFrame').className = 'character-frame ' + char.rarityClass;
+        };
+    </script>
+</body>
+</html>
